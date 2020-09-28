@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity2">
+
+    <TextView
+        android:id="@+id/TextView_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"
+        android:layout_marginBottom="20sp"
+        android:gravity="center"
+        android:stretchColumns="*"
+        android:text="图片"
+        android:textColor="#000000"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <TableRow android:layout_marginBottom="20sp">
+
+        <TextView
+            android:id="@+id/tx_1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5sp"
+            android:layout_marginRight="5sp"
+            android:layout_marginBottom="5sp"
+            android:layout_weight="1"
+            android:text="账号"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            android:textStyle="bold"
+
+            />
+
+        <EditText
+            android:id="@+id/et_1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5sp"
+            android:layout_marginRight="5sp"
+            android:layout_marginBottom="5sp"
+            android:layout_weight="6"
+            android:text="输入框"
+            android:gravity="center"
+            android:maxLength="20"
+            android:inputType="number"
+            android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+
+    </TableRow>
+
+    <TableRow >
+
+        <TextView
+            android:id="@+id/tx_2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5sp"
+            android:layout_marginRight="5sp"
+            android:layout_marginBottom="5sp"
+            android:layout_weight="1"
+            android:text="密码"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            android:textStyle="bold"
+
+            />
+
+        <EditText
+            android:id="@+id/et_2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5sp"
+            android:layout_marginRight="5sp"
+            android:layout_marginBottom="5sp"
+            android:layout_weight="6"
+            android:text="输入框"
+            android:gravity="center"
+            android:maxLength="20"
+            android:inputType="numberPassword"
+            android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+
+    </TableRow>
+
+
+    <Button
+        android:id="@+id/bt_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5sp"
+        android:layout_marginRight="5sp"
+        android:layout_marginTop="15sp"
+        android:layout_marginBottom="5sp"
+        android:text="登录"
+        android:textSize="30sp"
+        android:textColor="#000000"
+        android:textStyle="bold" />
+    <Button
+        android:id="@+id/bt_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5sp"
+        android:layout_marginRight="5sp"
+        android:layout_marginBottom="5sp"
+        android:text="忘记密码"
+        android:textSize="30sp"
+        android:textColor="#000000"
+        android:textStyle="bold" />
+    <Button
+        android:id="@+id/bt_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5sp"
+        android:layout_marginRight="5sp"
+        android:layout_marginBottom="5sp"
+        android:text="新账号注册"
+        android:textSize="30sp"
+        android:textColor="#000000"
+        android:textStyle="bold" />
+</TableLayout>
