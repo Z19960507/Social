@@ -8,7 +8,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -39,7 +38,7 @@ public class ForgetActivity1 extends AppCompatActivity implements View.OnClickLi
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(ForgetActivity1.this,MainActivity2.class);
+                Intent intent=new Intent(ForgetActivity1.this, LoginActivity.class);
                 startActivity(intent);
             }
         });

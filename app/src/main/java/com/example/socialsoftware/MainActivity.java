@@ -6,15 +6,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.TextUtils;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
+
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.example.socialsoftware.arouter.MyRoute;
+import com.example.socialsoftware.base.BaseFragment;
+import com.example.socialsoftware.fragment.MineActivity;
+import com.vondear.rxtool.RxTool;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
+import javax.security.auth.login.LoginException;
 
 //public class MainActivity extends AppCompatActivity {
 
@@ -50,30 +53,33 @@ import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final long DELAY = 3000;
+    private static final long DELAY = 1500;
     private TimerTask task;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ARouter.init(getApplication());
         setContentView(R.layout.activity_main);
 
         SharedPreferences sharedPreferences = getSharedPreferences("data", Context.MODE_PRIVATE);
         String userId = sharedPreferences.getString("name", "");
 
-        if (userId != null && !userId.equals("")) {
-            final Intent localIntent = new Intent(this, Logout.class);//你要转向的Activity
+        if (!TextUtils.isEmpty(userId)) {
+            final Intent localIntent = new Intent(MainActivity.this, BindingActivity.class);//你要转向的Activity
             Timer timer = new Timer();
             TimerTask tast = new TimerTask() {
                 @Override
                 public void run() {
                     startActivity(localIntent);//执行
+                    finish();
+//                    ARouter.getInstance().build(MyRoute.BINDING_ACTIVITY).navigation();
                 }
             };
             timer.schedule(tast, DELAY);//3秒后
 //                    return;//4w8fam
         } else {
-            final Intent localIntent = new Intent(this, MainActivity2.class);//你要转向的Activity
+            final Intent localIntent = new Intent(this, LoginActivity.class);//你要转向的Activity
             Timer timer = new Timer();
             TimerTask tast = new TimerTask() {
                 @Override

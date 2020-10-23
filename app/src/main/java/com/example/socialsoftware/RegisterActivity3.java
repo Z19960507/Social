@@ -71,7 +71,7 @@ public class RegisterActivity3 extends AppCompatActivity implements View.OnClick
                 if (!TextUtils.isEmpty(mphonecode)) {
                     if (TextUtils.equals(mphonecode, realCode)) {
                         mDbOpenHepler.submit(account, password, mphonecode);//把这三个传递进db的submit里
-                        Intent intent = new Intent(RegisterActivity3.this, MainActivity2.class);
+                        Intent intent = new Intent(RegisterActivity3.this, LoginActivity.class);
                         User user = new User(account, password, mphonecode);//生成一个对象,new 一个对象
                         intent.putExtra("user", user);//放user到Intent
                         startActivity(intent);

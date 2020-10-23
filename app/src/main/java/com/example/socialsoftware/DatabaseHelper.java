@@ -36,6 +36,17 @@ class DBOpenHelper extends SQLiteOpenHelper {
                 "name TEXT," +
                 "password TEXT," +
                 "code TEXT)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS char(" +//如果user不存在的存在的话
+                "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "name TEXT," +
+                "password TEXT," +
+                "code TEXT)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS mine(" +//如果user不存在的存在的话
+                "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "age TEXT," +
+                "fname TEXT," +
+                "lname TEXT)");
+
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
@@ -70,6 +81,10 @@ class DBOpenHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO user (name,password,code) VALUES(?,?,?)", new Object[]{name, password,code});
     }
 
+    public void msubmit(String age, String fname,String lname) {
+        db.execSQL("INSERT INTO mine (age,fname,lname) VALUES(?,?,?)", new Object[]{age, fname,lname});
+    }
+
 
     public User selectUserByName(String name) {
         Cursor cursor = db.rawQuery("SELECT * FROM user WHERE name = ?", new String[]{name});
@@ -82,6 +97,7 @@ class DBOpenHelper extends SQLiteOpenHelper {
         }
         return null;
     }
+
 //获取User数组
 //定义了一个ArrayList类的list(列表),
 //     /*

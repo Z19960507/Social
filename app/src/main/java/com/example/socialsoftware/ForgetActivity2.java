@@ -72,7 +72,7 @@ public class ForgetActivity2 extends AppCompatActivity implements View.OnClickLi
                         Toast.makeText(this, "新密码可用", Toast.LENGTH_SHORT).show();
                         Toast.makeText(this, "修改成功", Toast.LENGTH_SHORT).show();
                         mDbOpenHepler.updata(password);
-                        Intent intent=new Intent(ForgetActivity2.this,MainActivity2.class);
+                        Intent intent=new Intent(ForgetActivity2.this, LoginActivity.class);
                         startActivity(intent);
                         return;//y73hrn
                     }

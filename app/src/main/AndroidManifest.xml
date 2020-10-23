@@ -9,16 +9,38 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ForgetActivity2"></activity>
-        <activity android:name=".Logout" />
-        <activity android:name=".RegisterActivity3" />
-        <activity android:name=".RegisterActivity2" />
-        <activity android:name=".db" />
-        <activity android:name=".sj" />
-        <activity android:name=".RegisterActivity1" />
-        <activity android:name=".ForgetActivity1" />
-        <activity android:name=".MainActivity2" />
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".BindingActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".ForgetActivity2"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".Logout"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".RegisterActivity3"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".RegisterActivity2"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".RegisterActivity1"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".ForgetActivity1"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".LoginActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

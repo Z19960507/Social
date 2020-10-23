@@ -11,7 +11,7 @@ import java.util.Random;
  * Created by littlecurl 2018/6/24
  */
 
-class Code {
+public class Code {
     /**
      * 随机数数组
      * 去除了易混淆的 数字 0 和 字母 o O

@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -39,7 +38,7 @@ public class Logout extends AppCompatActivity implements View.OnClickListener{
             //步骤4：提交
             editor.apply();
 
-            Intent intent = new Intent(this, MainActivity2.class);
+            Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
             finish();
         }
