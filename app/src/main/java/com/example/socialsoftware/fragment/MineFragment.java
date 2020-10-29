@@ -8,12 +8,6 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,12 +17,20 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.socialsoftware.LoginActivity;
+import com.example.socialsoftware.activity.LoginActivity;
 import com.example.socialsoftware.R;
+import com.example.socialsoftware.arouter.MyRoute;
 import com.vondear.rxtool.RxPhotoTool;
 import com.vondear.rxtool.RxSPTool;
 import com.vondear.rxui.view.RxTitle;
@@ -51,6 +53,7 @@ import static com.vondear.rxui.view.dialog.RxDialogChooseImage.LayoutType.TITLE;
  * Use the {@link MineFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
+@Route(path = MyRoute.MINE_FRAGMENT)
 public class MineFragment extends Fragment implements View.OnClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
@@ -77,6 +80,12 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     private Button mBtnExit;
     private LinearLayout mActivityUser;
     private Activity mContext = null;
+
+    private LinearLayout llMineInf;
+    private LinearLayout llUpdatePassword;
+    private String username;
+    private String name;
+
     public MineFragment() {
         // Required empty public constructor
     }
@@ -146,7 +155,16 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         mBtnExit = view.findViewById(R.id.btn_exit);
         mActivityUser = view.findViewById(R.id.activity_user);
 
+        llMineInf = view.findViewById(R.id.ll_mine_inf);
+        llUpdatePassword = view.findViewById(R.id.ll_update_password);
+
+        llMineInf.setOnClickListener(this);
+        llUpdatePassword.setOnClickListener(this);
         mBtnExit.setOnClickListener(this);
+
+        Bundle bundle = getArguments();
+        username = bundle.getString("username");
+        mTvName.setText(username);
     }
     protected void initView() {
         Resources r = mContext.getResources();
@@ -302,6 +320,15 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.ll_mine_inf:
+                ARouter.getInstance()
+                        .build(MyRoute.MINE_INF_ACTIVITY)
+                        .navigation(getContext());
+                break;
+
+            case R.id.ll_update_password:
+
+                break;
             case R.id.btn_exit:
                 final RxDialogSureCancel rxDialogSureCancel = new RxDialogSureCancel(getContext());
                 // qu xiao

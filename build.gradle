@@ -8,6 +8,9 @@ buildscript {
         mavenCentral()
         google()
         jcenter()
+        maven {
+            url  "http://dl.bintray.com/lukaville/maven"
+        }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.0.0"
@@ -28,6 +31,9 @@ allprojects {
         mavenCentral()
         google()
         jcenter()
+        maven {
+            url  "http://dl.bintray.com/lukaville/maven"
+        }
     }
 }
 

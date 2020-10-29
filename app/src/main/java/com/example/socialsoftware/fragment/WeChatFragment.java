@@ -13,8 +13,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.socialsoftware.ChatAdapter;
-import com.example.socialsoftware.ChatFakeUser;
+import com.example.socialsoftware.adapter.ChatAdapter;
+import com.example.socialsoftware.model.ChatFakeUser;
 
 
 import com.example.socialsoftware.R;

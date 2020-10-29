@@ -3,43 +3,50 @@
     package="com.example.socialsoftware">
 
     <application
+        android:name=".fragment.chaui.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
-            android:name=".BindingActivity"
+            android:name=".MainActivity"
             android:launchMode="singleTask" />
         <activity
-            android:name=".ForgetActivity2"
+            android:name=".activity.ForgetPassword2Activity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".Logout"
+            android:name=".activity.Logout"
             android:launchMode="singleTop" />
         <activity
-            android:name=".RegisterActivity3"
+            android:name=".activity.RegisterPhoneCodeActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".RegisterActivity2"
+            android:name=".activity.RegisterPasswordActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".RegisterActivity1"
+            android:name=".activity.RegisterAccountActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".ForgetActivity1"
+            android:name=".activity.ForgetPassword1Activity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".activity.LoginActivity"
             android:launchMode="singleTop" />
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <activity android:name=".activity.MineInfActivity"></activity>
+
+        <activity android:name=".fragment.chaui.activity.ChatActivity"></activity>
+
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.LauncherActivity"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

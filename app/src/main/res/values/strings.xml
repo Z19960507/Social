@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BottomNavigationViewEx</string>
+    <string name="app_name">SocialSoftware</string>
 
     <string name="friend">Friend</string>
     <string name="backup">Backup</string>
@@ -43,6 +43,8 @@
     <string name="tips_badge_removed" translatable="false">Badge is removed</string>
     <string name="unchecked_first_time" translatable="false">unchecked first time</string>
     <string name="center_fab">Center Fab</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 

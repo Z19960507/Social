@@ -5,11 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ForgetActivity1">
+    tools:context=".activity.ForgetPassword1Activity">
     <TableRow android:layout_marginBottom="20sp">
 
         <Button
-            android:id="@+id/bt_1"
+            android:id="@+id/id_login"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="5sp"
@@ -58,7 +58,7 @@
             />
 
         <EditText
-            android:id="@+id/et_1"
+            android:id="@+id/et_username"
             android:layout_width="260dp"
             android:layout_height="60dp"
             android:layout_marginLeft="5sp"
@@ -94,7 +94,7 @@
             />
 
         <EditText
-            android:id="@+id/et_2"
+            android:id="@+id/et_password"
             android:layout_width="260dp"
             android:layout_height="60dp"
             android:layout_marginLeft="5sp"
