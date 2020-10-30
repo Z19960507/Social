@@ -23,8 +23,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -107,8 +105,8 @@ public class ChatUiHelper {
         List<View> viewList = new ArrayList<View>();
         for (int index = 0; index < pageCount; index++) {
             //每个页面创建一个recycleview
-            RecyclerView recyclerView = (RecyclerView) inflater.inflate(R.layout.item_emoji_vprecy, vpEmoji, false);
-            recyclerView.setLayoutManager(new GridLayoutManager(mActivity, 7));
+//            RecyclerView recyclerView = (RecyclerView) inflater.inflate(R.layout.item_emoji_vprecy, vpEmoji, false);
+//            recyclerView.setLayoutManager(new GridLayoutManager(mActivity, 7));
             EmojiAdapter entranceAdapter;
             if (index == pageCount - 1) {
                 //最后一页的数据
@@ -132,8 +130,8 @@ public class ChatUiHelper {
 
                 }
             });
-            recyclerView.setAdapter(entranceAdapter);
-            viewList.add(recyclerView);
+//            recyclerView.setAdapter(entranceAdapter);
+//            viewList.add(recyclerView);
         }
         EmojiVpAdapter adapter = new EmojiVpAdapter(viewList);
         vpEmoji.setAdapter(adapter);
