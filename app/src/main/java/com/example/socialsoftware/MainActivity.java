@@ -3,8 +3,6 @@ package com.example.socialsoftware;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -150,9 +148,9 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.i_favor:
                         position = 3;
                         break;
-                    case R.id.i_empty: {
-                        return false;
-                    }
+//                    case R.id.i_empty: {
+//                        return false;
+//                    }
                 }
                 if(previousPosition != position) {
                     // ViewPager 切换 页面
@@ -176,8 +174,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
 //                Log.i(TAG, "-----ViewPager-------- previous item:" + bind.bnve.getCurrentItem() + " current item:" + position + " ------------------");
-                if (position >= 2)// 2 is center
-                    position++;// if page is 2, need set bottom item to 3, and the same to 3 -> 4
+//                if (position >= 3)// 2 is center
+//                    position++;// if page is 2, need set bottom item to 3, and the same to 3 -> 4
                 bind.bnve.setCurrentItem(position);
             }
 
@@ -188,12 +186,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // center item click listener
-        bind.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "Center", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        bind.fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Toast.makeText(MainActivity.this, "Center", Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     /**

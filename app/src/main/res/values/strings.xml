@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">SocialSoftware</string>
 
-    <string name="friend">Friend</string>
+    <string name="friend">友達</string>
     <string name="backup">Backup</string>
     <string name="friends">Friends</string>
     <string name="favor">Favor</string>
@@ -13,7 +13,7 @@
     <string name="k">K</string>
     <string name="p">P</string>
     <string name="t">T</string>
-    <string name="visibility">Visibility</string>
+    <string name="visibility">会話</string>
     <string name="different_style">Different style</string>
     <string name="with_view_pager">With ViewPager</string>
 

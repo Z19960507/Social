@@ -18,9 +18,6 @@
             android:name=".activity.ForgetPassword2Activity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".activity.Logout"
-            android:launchMode="singleTop" />
-        <activity
             android:name=".activity.RegisterPhoneCodeActivity"
             android:launchMode="singleTop" />
         <activity

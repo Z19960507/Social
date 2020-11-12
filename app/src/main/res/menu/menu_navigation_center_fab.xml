@@ -11,9 +11,9 @@
         android:title="@string/friend" />
 
     <!--must set the item title to empty-->
-    <item
-        android:id="@+id/i_empty"
-        android:title="" />
+    <!--    <item-->
+    <!--        android:id="@+id/i_empty"-->
+    <!--        android:title="" />-->
     <item
         android:id="@+id/i_backup"
         android:icon="@drawable/tab_find_frd_normal"

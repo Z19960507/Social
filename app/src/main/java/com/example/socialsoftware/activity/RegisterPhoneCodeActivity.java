@@ -1,8 +1,8 @@
 package com.example.socialsoftware.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -11,10 +11,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.socialsoftware.utils.Code;
-import com.example.socialsoftware.db.DBOpenHelper;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.socialsoftware.MainActivity;
 import com.example.socialsoftware.R;
+import com.example.socialsoftware.db.DBOpenHelper;
 import com.example.socialsoftware.model.User;
+import com.example.socialsoftware.utils.Code;
 
 public class RegisterPhoneCodeActivity extends AppCompatActivity implements View.OnClickListener {
     Button btn1;
@@ -76,10 +79,26 @@ public class RegisterPhoneCodeActivity extends AppCompatActivity implements View
                 if (!TextUtils.isEmpty(mphonecode)) {
                     if (TextUtils.equals(mphonecode, realCode)) {
                         mDbOpenHepler.submit(account, password, mphonecode);//把这三个传递进db的submit里
-                        Intent intent = new Intent(RegisterPhoneCodeActivity.this, LoginActivity.class);
+//                        Intent intent = new Intent(RegisterPhoneCodeActivity.this, LoginActivity.class);
                         User user = new User(account, password, mphonecode);//生成一个对象,new 一个对象
+                        Intent intent = new Intent(this, MainActivity.class);
                         intent.putExtra("user", user);//放user到Intent
+                        //步骤1：创建一个SharedPreferences对象
+                        SharedPreferences sharedPreferences= getSharedPreferences("data", Context.MODE_PRIVATE);
+                        //步骤2： 实例化SharedPreferences.Editor对象
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        //步骤3：将获取过来的值放入文件
+                        editor.putString("name",account);
+
+
+                        //步骤4：提交
+                        editor.apply();
+
+
+                        // 传递参数
+                        intent.putExtra("username",account);
                         startActivity(intent);
+                        finish();//销毁此Activity
 
                         Toast.makeText(this, "验证码正确", Toast.LENGTH_LONG).show();
                     } else {

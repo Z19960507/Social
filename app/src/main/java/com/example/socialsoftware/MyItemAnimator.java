@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.SimpleItemAnimator;
 import java.util.ArrayList;
 import java.util.List;
 
+//不在使用
 public class MyItemAnimator extends SimpleItemAnimator {
     private static final boolean DEBUG = false;
 
