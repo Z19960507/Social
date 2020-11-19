@@ -28,9 +28,12 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.socialsoftware.activity.LoginActivity;
 import com.example.socialsoftware.R;
+import com.example.socialsoftware.activity.LoginActivity;
+import com.example.socialsoftware.activity.MineRegisterPasswordActivity;
 import com.example.socialsoftware.arouter.MyRoute;
+import com.example.socialsoftware.db.DBOpenHelper;
+import com.example.socialsoftware.model.User;
 import com.vondear.rxtool.RxPhotoTool;
 import com.vondear.rxtool.RxSPTool;
 import com.vondear.rxui.view.RxTitle;
@@ -71,6 +74,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     private LinearLayout mLlAnchorLeft;
     private RelativeLayout mRlAvatar;
     private TextView mTvName;
+    private TextView mTvIdName;
     private TextView mTvConstellation;
     private TextView mTvBirthday;
     private TextView mTvAddress;
@@ -80,11 +84,12 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     private Button mBtnExit;
     private LinearLayout mActivityUser;
     private Activity mContext = null;
-
+    private SharedPreferences sharedPreferences;
     private LinearLayout llMineInf;
     private LinearLayout llUpdatePassword;
     private String username;
     private String name;
+    private DBOpenHelper dbOpenHelper;
 
     public MineFragment() {
         // Required empty public constructor
@@ -117,6 +122,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         }
 
         mContext = getActivity();
+
     }
 
     @Override
@@ -146,6 +152,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         mLlAnchorLeft = view.findViewById(R.id.ll_anchor_left);
         mRlAvatar = view.findViewById(R.id.rl_avatar);
         mTvName = view.findViewById(R.id.tv_name);
+        mTvIdName = view.findViewById(R.id.tv_id_name);
         mTvConstellation = view.findViewById(R.id.tv_constellation);
         mTvBirthday = view.findViewById(R.id.tv_birthday);
         mTvAddress = view.findViewById(R.id.tv_address);
@@ -163,8 +170,17 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         mBtnExit.setOnClickListener(this);
 
         Bundle bundle = getArguments();
+
         username = bundle.getString("username");
         mTvName.setText(username);
+        dbOpenHelper = new DBOpenHelper(mContext);
+        sharedPreferences = mContext.getSharedPreferences("data", Context.MODE_PRIVATE);
+        String name = sharedPreferences.getString("name","");
+        User user1 = dbOpenHelper.getUserByName(name);
+        if (user1 != null) {
+            mTvIdName.setText(user1.getReal_name());
+        }
+
     }
     protected void initView() {
         Resources r = mContext.getResources();
@@ -327,7 +343,10 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.ll_update_password:
+                Intent intent = new Intent(mContext, MineRegisterPasswordActivity.class);
+                intent.putExtra("username",username);
 
+                getActivity().startActivity(intent);
                 break;
             case R.id.btn_exit:
                 final RxDialogSureCancel rxDialogSureCancel = new RxDialogSureCancel(getContext());
