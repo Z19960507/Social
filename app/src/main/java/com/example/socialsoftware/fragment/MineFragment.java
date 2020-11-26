@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -89,8 +90,11 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     private LinearLayout llUpdatePassword;
     private String username;
     private String name;
+    private Button mSave;
+    private Button save;
     private DBOpenHelper dbOpenHelper;
-
+    private TextView tvChatName;
+    private EditText edChatName;
     public MineFragment() {
         // Required empty public constructor
     }
@@ -161,7 +165,10 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         mEditText2 = view.findViewById(R.id.editText2);
         mBtnExit = view.findViewById(R.id.btn_exit);
         mActivityUser = view.findViewById(R.id.activity_user);
-
+        mSave = view.findViewById(R.id.bt_revise_name);
+        save = view.findViewById(R.id.bt_save_name);
+        tvChatName = view.findViewById(R.id.tv_id);
+        edChatName = view.findViewById(R.id.et_what_name);
         llMineInf = view.findViewById(R.id.ll_mine_inf);
         llUpdatePassword = view.findViewById(R.id.ll_update_password);
 
@@ -333,9 +340,16 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     }
 
 
+
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.bt_revise_name:
+                showEditHideText();
+                return;
+            case R.id.bt_save_name:
+                showTextHideEdit();
+                return;
             case R.id.ll_mine_inf:
                 ARouter.getInstance()
                         .build(MyRoute.MINE_INF_ACTIVITY)
@@ -382,5 +396,20 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 });
                 rxDialogSureCancel.show();
         }
+    }
+    private void showEditHideText() {
+        mSave.setVisibility(View.GONE);
+        save.setVisibility(View.VISIBLE);
+
+        tvChatName.setVisibility(View.GONE);
+        edChatName.setVisibility(View.VISIBLE);
+
+    }
+        private void showTextHideEdit() {
+        mSave.setVisibility(View.VISIBLE);
+        save.setVisibility(View.GONE);
+
+        tvChatName.setVisibility(View.VISIBLE);
+        edChatName.setVisibility(View.GONE);
     }
 }

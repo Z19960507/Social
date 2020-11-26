@@ -120,8 +120,8 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         db.execSQL("DELETE FROM user WHERE name = AND password =" + name + password);
     }
 
-    public void update(String password) {
-        db.execSQL("UPDATE user SET password = ?", new Object[]{password});
+    public void update(String name ,String password) {
+        db.execSQL("UPDATE user SET password = ? WHERE name = ?", new Object[]{password, name});
     }
 
     public void updateRealName(String realName) {

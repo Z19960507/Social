@@ -62,6 +62,7 @@ public class MineRegisterPasswordActivity extends AppCompatActivity implements V
         switch (view.getId()) {
             case R.id.id_back_mine:
                 finish();
+                return;
             case R.id.bt_confirmed:
 
                 String Password = oldPassword.getText().toString().trim();
@@ -96,7 +97,7 @@ public class MineRegisterPasswordActivity extends AppCompatActivity implements V
                     if (user != null && !TextUtils.equals(nPassword, user.getPassword()) && TextUtils.equals(nPassword, mConfirmedPassword)) {
                         Toast.makeText(this, "新密码可用", Toast.LENGTH_SHORT).show();
                         Toast.makeText(this, "修改成功", Toast.LENGTH_SHORT).show();
-                        mDbOpenHepler.update(nPassword);
+                        mDbOpenHepler.update(username,nPassword);
                         Intent intent = new Intent(this, LoginActivity.class);
                         startActivity(intent);
                         return;//y73hrn

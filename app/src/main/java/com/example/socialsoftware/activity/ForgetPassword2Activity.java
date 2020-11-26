@@ -75,7 +75,7 @@ public class ForgetPassword2Activity extends AppCompatActivity implements View.O
                     if (user != null && !TextUtils.equals(password, user.getPassword()) && TextUtils.equals(password, mpassword2)) {
                         Toast.makeText(this, "新密码可用", Toast.LENGTH_SHORT).show();
                         Toast.makeText(this, "修改成功", Toast.LENGTH_SHORT).show();
-                        mDbOpenHepler.update(password);
+                        mDbOpenHepler.update(account,password);
                         Intent intent=new Intent(ForgetPassword2Activity.this, LoginActivity.class);
                         startActivity(intent);
                         return;//y73hrn
