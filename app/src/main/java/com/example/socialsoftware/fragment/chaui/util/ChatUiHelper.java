@@ -23,6 +23,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -61,7 +63,7 @@ public class ChatUiHelper {
 
     public static ChatUiHelper with(Activity activity) {
         ChatUiHelper mChatUiHelper = new ChatUiHelper();
-        //   AndroidBug5497Workaround.assistActivity(activity);
+//           AndroidBug5497Workaround.assistActivity(activity);
         mChatUiHelper.mActivity = activity;
         mChatUiHelper.mInputManager = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
         mChatUiHelper.mSp = activity.getSharedPreferences(SHARE_PREFERENCE_NAME, Context.MODE_PRIVATE);
@@ -74,7 +76,7 @@ public class ChatUiHelper {
     public ChatUiHelper bindEmojiData() {
 
         mListEmoji = EmojiDao.getInstance().getEmojiBean();
-        //  LogUtil.d("获取到的表情集合"+Arrays.asList(mListEmoji));
+//          LogUtil.d("获取到的表情集合"+ Arrays.asList(mListEmoji));
         LinearLayout homeEmoji = mActivity.findViewById(R.id.home_emoji);
 
         ViewPager vpEmoji = mActivity.findViewById(R.id.vp_emoji);
@@ -105,8 +107,8 @@ public class ChatUiHelper {
         List<View> viewList = new ArrayList<View>();
         for (int index = 0; index < pageCount; index++) {
             //每个页面创建一个recycleview
-//            RecyclerView recyclerView = (RecyclerView) inflater.inflate(R.layout.item_emoji_vprecy, vpEmoji, false);
-//            recyclerView.setLayoutManager(new GridLayoutManager(mActivity, 7));
+            RecyclerView recyclerView = (RecyclerView) inflater.inflate(R.layout.item_emoji_vprecy, vpEmoji, false);
+            recyclerView.setLayoutManager(new GridLayoutManager(mActivity, 7));
             EmojiAdapter entranceAdapter;
             if (index == pageCount - 1) {
                 //最后一页的数据
@@ -130,8 +132,8 @@ public class ChatUiHelper {
 
                 }
             });
-//            recyclerView.setAdapter(entranceAdapter);
-//            viewList.add(recyclerView);
+            recyclerView.setAdapter(entranceAdapter);
+            viewList.add(recyclerView);
         }
         EmojiVpAdapter adapter = new EmojiVpAdapter(viewList);
         vpEmoji.setAdapter(adapter);
@@ -237,59 +239,60 @@ public class ChatUiHelper {
 
 
     //绑定表情按钮点击事件
-//    public ChatUiHelper bindToEmojiButton(ImageView emojiBtn) {
-//        mIvEmoji = emojiBtn;
-//        emojiBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                mEditText.clearFocus();
-//                if (!mEmojiLayout.isShown()) {
-//                    if (mAddLayout.isShown()) {
-//                        showEmotionLayout();
-//                        hideMoreLayout();
-//                        return;
-//                    }
-//                } else if (mEmojiLayout.isShown() && !mAddLayout.isShown()) {
-//                    mIvEmoji.setImageResource(R.mipmap.ic_emoji);
-//                    if (mBottomLayout.isShown()) {
-//                        lockContentHeight();//显示软件盘时，锁定内容高度，防止跳闪。
-//                        hideBottomLayout(true);//隐藏表情布局，显示软件盘
-//                        unlockContentHeightDelayed();//软件盘显示后，释放内容高度
-//                    } else {
-//                        if (isSoftInputShown()) {//同上
-//                            lockContentHeight();
-//                            showBottomLayout();
-//                            unlockContentHeightDelayed();
-//                        } else {
-//                            showBottomLayout();//两者都没显示，直接显示表情布局
-//                        }
-//                    }
-//
-//
-//                    return;
-//                }
-//                showEmotionLayout();
+    public ChatUiHelper bindToEmojiButton(ImageView emojiBtn) {
+        mIvEmoji = emojiBtn;
+        emojiBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mEditText.clearFocus();
+                if (!mEmojiLayout.isShown()) {
+////                    if (mAddLayout.isShown()) {
+                        showEmotionLayout();
+////                        hideMoreLayout();
+////                        return;
+////                    }
+////                    && !mAddLayout.isShown()
+                } else
+                    if (mEmojiLayout.isShown() ) {
+                    mIvEmoji.setImageResource(R.mipmap.ic_emoji);
+                    if (mBottomLayout.isShown()) {
+                        lockContentHeight();//显示软件盘时，锁定内容高度，防止跳闪。
+                        hideBottomLayout(true);//隐藏表情布局，显示软件盘
+                        unlockContentHeightDelayed();//软件盘显示后，释放内容高度
+                    } else {
+                        if (isSoftInputShown()) {//同上
+                            lockContentHeight();
+                            showBottomLayout();
+                            unlockContentHeightDelayed();
+                        }
+                        else {
+                            showBottomLayout();//两者都没显示，直接显示表情布局
+                        }
+                    }
+                    return;
+                }
+                showEmotionLayout();
 //                hideMoreLayout();
-//                if (mBottomLayout.isShown()) {
-//                    lockContentHeight();//显示软件盘时，锁定内容高度，防止跳闪。
-//                    hideBottomLayout(true);//隐藏表情布局，显示软件盘
-//                    unlockContentHeightDelayed();//软件盘显示后，释放内容高度
-//                } else {
-//                    if (isSoftInputShown()) {//同上
-//                        lockContentHeight();
-//                        showBottomLayout();
-//                        unlockContentHeightDelayed();
-//                    } else {
-//                        showBottomLayout();//两者都没显示，直接显示表情布局
-//                    }
-//                }
-//            }
-//        });
-//        return this;
-//    }
-
-
-    //绑定底部加号按钮
+                if (mBottomLayout.isShown()) {
+                    lockContentHeight();//显示软件盘时，锁定内容高度，防止跳闪。
+                    hideBottomLayout(true);//隐藏表情布局，显示软件盘
+                    unlockContentHeightDelayed();//软件盘显示后，释放内容高度
+                } else {
+                    if (isSoftInputShown()) {//同上
+                        lockContentHeight();
+                        showBottomLayout();
+                        unlockContentHeightDelayed();
+                    } else {
+                        showBottomLayout();//两者都没显示，直接显示表情布局
+                    }
+                }
+            }
+        });
+        return this;
+    }
+//}
+//
+//    //绑定底部加号按钮
 //    public ChatUiHelper bindToAddButton(View addButton) {
 //        mAddButton = addButton;
 //
@@ -364,10 +367,10 @@ public class ChatUiHelper {
         mIvEmoji.setImageResource(R.mipmap.ic_keyboard);
     }
 
-//    private void hideEmotionLayout() {
-//        mEmojiLayout.setVisibility(View.GONE);
-//        mIvEmoji.setImageResource(R.mipmap.ic_emoji);
-//    }
+    private void hideEmotionLayout() {
+        mEmojiLayout.setVisibility(View.GONE);
+        mIvEmoji.setImageResource(R.mipmap.ic_emoji);
+    }
 
     /**
      * 是否显示软件盘

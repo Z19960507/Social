@@ -24,7 +24,9 @@ public class EmojiDao {
     private static final String TAG = "EmojiDao";
     private String path;
     private static EmojiDao dao;
-    public static EmojiDao getInstance(){
+    public static EmojiDao
+
+    getInstance(){
         if (dao == null){
             synchronized (EmojiDao.class){
                 if (dao == null){

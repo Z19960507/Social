@@ -23,6 +23,7 @@ import com.example.socialsoftware.fragment.chaui.bean.MsgSendStatus;
 import com.example.socialsoftware.fragment.chaui.bean.MsgType;
 import com.example.socialsoftware.fragment.chaui.bean.TextMsgBody;
 import com.example.socialsoftware.fragment.chaui.util.ChatUiHelper;
+import com.example.socialsoftware.fragment.chaui.widget.RecordButton;
 import com.example.socialsoftware.fragment.chaui.widget.StateButton;
 
 import java.util.ArrayList;
@@ -36,13 +37,13 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
     RecyclerView mRvChat;
     EditText mEtContent;
     RelativeLayout mRlBottomLayout;//表情,添加底部布局
-//    ImageView mIvAdd;
+    ImageView mIvAdd;
     ImageView mIvEmo;
     StateButton mBtnSend;//发送按钮
-//    ImageView mIvAudio;//录音图片
-//    RecordButton mBtnAudio;//录音按钮
-//    LinearLayout mLlEmotion;//表情布局
-//    LinearLayout mLlAdd;//添加布局
+    ImageView mIvAudio;//录音图片
+    RecordButton mBtnAudio;//录音按钮
+    LinearLayout mLlEmotion;//表情布局
+    LinearLayout mLlAdd;//添加布局
 //     SwipeRefreshLayout mSwipeRefresh;//下拉刷新
      private ChatAdapter mAdapter;
      public static final String 	  mSenderId="right";
@@ -72,9 +73,9 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
          mEtContent = findViewById(R.id.et_content);
          mRlBottomLayout = findViewById(R.id.bottom_layout);//表情,添加底部布局
 //         mIvAdd = findViewById(R.id.ivAdd);
-//         mIvEmo = findViewById(R.id.ivEmo);
+         mIvEmo = findViewById(R.id.ivEmo);
          mBtnSend = findViewById(R.id.btn_send);//发送按钮
-//         mLlEmotion = findViewById(R.id.rlEmotion);//表情布局
+         mLlEmotion = findViewById(R.id.rlEmotion);//表情布局
         //添加布局
 //        mSwipeRefresh = findViewById(R.id.swipe_chat);
 //        mSwipeRefresh.setOnRefreshListener(this);
@@ -82,7 +83,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-//        mLlEmotion.setOnClickListener(this);
+        mLlEmotion.setOnClickListener(this);
 
         mBtnSend.setOnClickListener(this);
 
@@ -141,9 +142,9 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                 .bindttToSendButton(mBtnSend)
                 .bindEditText(mEtContent)
                 .bindBottomLayout(mRlBottomLayout)
-//                .bindEmojiLayout(mLlEmotion)
-//                .bindToEmojiButton(mIvEmo)
-//                .bindEmojiData()
+                .bindEmojiLayout(mLlEmotion)
+                .bindToEmojiButton(mIvEmo)
+                .bindEmojiData()
         ;
 //                .bindAddLayout(mLlAdd)
 //                .bindToAddButton(mIvAdd)
@@ -174,7 +175,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                 mUiHelper.hideBottomLayout(false);
                 mUiHelper.hideSoftInput();
                 mEtContent.clearFocus();
-//                mIvEmo.setImageResource(R.mipmap.ic_emoji);
+                mIvEmo.setImageResource(R.mipmap.ic_emoji);
                 return false;
             }
         });
