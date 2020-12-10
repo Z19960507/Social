@@ -1,7 +1,9 @@
 package com.example.socialsoftware.fragment;
 
+import android.Manifest;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,8 +13,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -60,10 +64,11 @@ public class MineActivity extends ActivityBase implements View.OnClickListener {
     private TextView mEditText2;
     private Button mBtnExit;
     private LinearLayout mActivityUser;
-
+    private static final int PERMISSION_CAMERA_REQUEST_CODE = 0x00000012;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        checkPermissionAndCamera();
         RxBarTool.noTitle(this);
 
         RxTool.init(this);
@@ -73,6 +78,11 @@ public class MineActivity extends ActivityBase implements View.OnClickListener {
         RxDeviceTool.setPortrait(this);
         initView();
     }
+
+
+
+
+
 
     private void initUI(){
         mRxTitle = findViewById(R.id.rx_title);
@@ -91,6 +101,45 @@ public class MineActivity extends ActivityBase implements View.OnClickListener {
         mActivityUser = findViewById(R.id.activity_user);
     }
 
+
+
+    /**
+     * 检查权限并拍照。
+     * 调用相机前先检查权限。
+     */
+    private void checkPermissionAndCamera() {
+        int hasCameraPermission = ContextCompat.checkSelfPermission(getApplication(),
+                Manifest.permission.CAMERA);
+        if (hasCameraPermission == PackageManager.PERMISSION_GRANTED) {
+            //有调起相机拍照。
+            initDialogChooseImage();
+        } else {
+            //没有权限，申请权限。
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.CAMERA},
+                    PERMISSION_CAMERA_REQUEST_CODE);
+
+        }
+    }
+
+    /**
+     * 处理权限申请的回调。
+     */
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == PERMISSION_CAMERA_REQUEST_CODE) {
+            if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                //允许权限，有调起相机拍照。
+                initDialogChooseImage();
+            } else {
+                //拒绝权限，弹出提示框。
+                Toast.makeText(this,"拍照权限被拒绝",Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+
+
     protected void initView() {
         Resources r = mContext.getResources();
         resultUri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://"
@@ -103,13 +152,13 @@ public class MineActivity extends ActivityBase implements View.OnClickListener {
         mIvAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                initDialogChooseImage();
-            }
+                checkPermissionAndCamera();            }
         });
         mIvAvatar.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
 //                RxImageTool.showBigImageView(mContext, resultUri);
+
                 RxDialogScaleView rxDialogScaleView = new RxDialogScaleView(mContext);
                 rxDialogScaleView.setImage(resultUri);
                 rxDialogScaleView.show();
@@ -119,7 +168,7 @@ public class MineActivity extends ActivityBase implements View.OnClickListener {
     }
 
     private void initDialogChooseImage() {
-        RxDialogChooseImage dialogChooseImage = new RxDialogChooseImage(mContext, TITLE);
+        RxDialogChooseImage dialogChooseImage = new RxDialogChooseImage(this, TITLE);
         dialogChooseImage.show();
     }
 

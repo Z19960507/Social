@@ -198,14 +198,19 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 
         mRxTitle.setLeftFinish(getActivity());
 
+        // 这里才是正在的点击事件
+        // 从这个点击开始往里找
+        // 頭像點擊事件 在這裡
         mIvAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // 往裡走
                 initDialogChooseImage();
             }
         });
 
 
+        // 这里是  onLong  长按
         mIvAvatar.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
@@ -216,10 +221,18 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 return false;
             }
         });
+
+
     }
 
+
+
+
     private void initDialogChooseImage() {
+        // 发现这里 new 了一个 Dialog  Dialog不知道啥意思就百度 对话，其实就是弹窗的意思
+        // 继续往里走
         RxDialogChooseImage dialogChooseImage = new RxDialogChooseImage(this, TITLE);
+
         dialogChooseImage.show();
     }
 
@@ -228,7 +241,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         switch (requestCode) {
             case RxPhotoTool.GET_IMAGE_FROM_PHONE://选择相册之后的处理
                 if (resultCode == RESULT_OK) {
-//                    RxPhotoTool.cropImage(ActivityUser.this, );// 裁剪图片
+//                    RxPhotoTool.cropImage(mi.this, RxPhotoTool.imageUriFromCamera);// 裁剪图片
                     initUCrop(data.getData());
                 }
 
@@ -261,7 +274,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 if (resultCode == RESULT_OK) {
                     resultUri = UCrop.getOutput(data);
                     roadImageView(resultUri, mIvAvatar);
-//                    RxSPTool.putContent(mContext, "AVATAR", resultUri.toString());
+                    RxSPTool.putContent(mContext, "AVATAR", resultUri.toString());
                     RxSPTool.putContent(getContext(), "AVATAR", resultUri.toString());
                 } else if (resultCode == UCrop.RESULT_ERROR) {
                     final Throwable cropError = UCrop.getError(data);
