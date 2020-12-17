@@ -246,6 +246,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 }
 
                 break;
+                //点击照相机的对号
             case RxPhotoTool.GET_IMAGE_BY_CAMERA://选择照相机之后的处理
                 if (resultCode == RESULT_OK) {
                     /* data.getExtras().get("data");*/
@@ -270,6 +271,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 //                RequestUpdateAvatar(new File(RxPhotoTool.getRealFilePath(mContext, RxPhotoTool.cropImageUri)));
                 break;
 
+                //最后更换头像
             case UCrop.REQUEST_CROP://UCrop裁剪之后的处理
                 if (resultCode == RESULT_OK) {
                     resultUri = UCrop.getOutput(data);

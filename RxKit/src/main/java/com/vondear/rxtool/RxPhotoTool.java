@@ -45,6 +45,7 @@ public class RxPhotoTool {
     public static Uri imageUriFromCamera;
     public static Uri cropImageUri;
 
+    //调用这个方法，打开照相机
     public static void openCameraImage(final Activity activity) {
         imageUriFromCamera = createImagePathUri(activity);
 
@@ -155,6 +156,7 @@ public class RxPhotoTool {
      * @param context
      * @return 图片的uri
      */
+    //保存照片
     public static Uri createImagePathUri(final Context context) {
         final Uri[] imageFilePath = {null};
 
