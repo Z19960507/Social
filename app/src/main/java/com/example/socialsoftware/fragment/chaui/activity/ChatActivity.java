@@ -18,11 +18,14 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.socialsoftware.R;
 import com.example.socialsoftware.arouter.MyRoute;
 import com.example.socialsoftware.fragment.chaui.adapter.ChatAdapter;
+import com.example.socialsoftware.fragment.chaui.bean.FileMsgBody;
 import com.example.socialsoftware.fragment.chaui.bean.Message;
 import com.example.socialsoftware.fragment.chaui.bean.MsgSendStatus;
 import com.example.socialsoftware.fragment.chaui.bean.MsgType;
 import com.example.socialsoftware.fragment.chaui.bean.TextMsgBody;
 import com.example.socialsoftware.fragment.chaui.util.ChatUiHelper;
+import com.example.socialsoftware.fragment.chaui.util.FileUtils;
+import com.example.socialsoftware.fragment.chaui.util.PictureFileUtil;
 import com.example.socialsoftware.fragment.chaui.widget.RecordButton;
 import com.example.socialsoftware.fragment.chaui.widget.StateButton;
 
@@ -48,9 +51,10 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
      private ChatAdapter mAdapter;
      public static final String 	  mSenderId="right";
      public static final String     mTargetId="left";
-//     public static final int       REQUEST_CODE_IMAGE=0000;
-//     public static final int       REQUEST_CODE_VEDIO=1111;SwipeRefreshLayout.OnRefreshListener,
-//     public static final int       REQUEST_CODE_FILE=2222;
+     public static final int       REQUEST_CODE_IMAGE=0000;
+     public static final int       REQUEST_CODE_VEDIO=1111;
+//     SwipeRefreshLayout.OnRefreshListener,
+     public static final int       REQUEST_CODE_FILE=2222;
 
 
 
@@ -72,14 +76,14 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
          mRvChat = findViewById(R.id.rv_chat_list);
          mEtContent = findViewById(R.id.et_content);
          mRlBottomLayout = findViewById(R.id.bottom_layout);//表情,添加底部布局
-//         mIvAdd = findViewById(R.id.ivAdd);
+         mIvAdd = findViewById(R.id.ivAdd);
          mIvEmo = findViewById(R.id.ivEmo);
          mBtnSend = findViewById(R.id.btn_send);//发送按钮
          mLlEmotion = findViewById(R.id.rlEmotion);//表情布局
         //添加布局
 //        mSwipeRefresh = findViewById(R.id.swipe_chat);
 //        mSwipeRefresh.setOnRefreshListener(this);
-
+        mLlAdd= findViewById(R.id.llAdd);
 
 
 
@@ -145,12 +149,12 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                 .bindEmojiLayout(mLlEmotion)
                 .bindToEmojiButton(mIvEmo)
                 .bindEmojiData()
+
+                .bindAddLayout(mLlAdd)
+                .bindToAddButton(mIvAdd)
+
+                .bindAudioBtn(mBtnAudio)
         ;
-//                .bindAddLayout(mLlAdd)
-//                .bindToAddButton(mIvAdd)
-
-//                .bindAudioBtn(mBtnAudio)
-
 
         //底部布局弹出,聊天列表上滑
         mRvChat.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
@@ -190,17 +194,17 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                 sendTextMsg(mEtContent.getText().toString());//private void sendTextMsg方法獲取輸入框中的值 1
                 mEtContent.setText("");//清空輸入框2
                 break;
-//            case R.id.rlPhoto:
-//                PictureFileUtil.openGalleryPic(ChatActivity.this,REQUEST_CODE_IMAGE);
-//                break;
-//            case R.id.rlVideo:
-//                PictureFileUtil.openGalleryAudio(ChatActivity.this,REQUEST_CODE_VEDIO);
-//                break;
-//            case R.id.rlFile:
-//                PictureFileUtil.openFile(ChatActivity.this,REQUEST_CODE_FILE);
-//                break;
-//            case R.id.rlLocation:
-//                break;
+            case R.id.rlPhoto:
+                PictureFileUtil.openGalleryPic(ChatActivity.this,REQUEST_CODE_IMAGE);
+                break;
+            case R.id.rlVideo:
+            PictureFileUtil.openGalleryAudio(ChatActivity.this,REQUEST_CODE_VEDIO);
+            break;
+            case R.id.rlFile:
+                PictureFileUtil.openFile(ChatActivity.this,REQUEST_CODE_FILE);
+                break;
+            case R.id.rlLocation:
+                break;
         }
     }
 
@@ -299,19 +303,19 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 //    }
 
     //文件消息
-//    private void sendFileMessage(String from, String to, final String path) {
-//        final Message mMessgae=getBaseSendMessage(MsgType.FILE);
-//        FileMsgBody mFileMsgBody=new FileMsgBody();
-//        mFileMsgBody.setLocalPath(path);
-//        mFileMsgBody.setDisplayName(FileUtils.getFileName(path));
-//        mFileMsgBody.setSize(FileUtils.getFileLength(path));
-//        mMessgae.setBody(mFileMsgBody);
-//        //开始发送
-//        mAdapter.addData( mMessgae);
-//        //模拟两秒后发送成功
-//        updateMsg(mMessgae);
-//
-//    }
+    private void sendFileMessage(String from, String to, final String path) {
+        final Message mMessgae=getBaseSendMessage(MsgType.FILE);
+        FileMsgBody mFileMsgBody=new FileMsgBody();
+        mFileMsgBody.setLocalPath(path);
+        mFileMsgBody.setDisplayName(FileUtils.getFileName(path));
+        mFileMsgBody.setSize(FileUtils.getFileLength(path));
+        mMessgae.setBody(mFileMsgBody);
+        //开始发送
+        mAdapter.addData( mMessgae);
+        //模拟两秒后发送成功
+        updateMsg(mMessgae);
+
+    }
 
     //语音消息
 //    private void sendAudioMessage(  final String path,int time) {

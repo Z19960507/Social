@@ -189,10 +189,10 @@ public class ChatUiHelper {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (mEditText.getText().toString().trim().length() > 0) {
                     mSendBtn.setVisibility(View.VISIBLE);
-//                    mAddButton.setVisibility(View.GONE);
+                    mAddButton.setVisibility(View.GONE);
                 } else {
                     mSendBtn.setVisibility(View.GONE);
-//                    mAddButton.setVisibility(View.VISIBLE);
+                    mAddButton.setVisibility(View.VISIBLE);
                 }
             }
 
@@ -222,7 +222,23 @@ public class ChatUiHelper {
         mAddLayout = addLayout;
         return this;
     }
-
+//    private void hideAudioButton() {
+//        mAudioButton.setVisibility(View.GONE);
+//        mEditText.setVisibility(View.VISIBLE);
+//        mAudioIv.setImageResource(R.mipmap.ic_audio);
+//    }
+//
+//
+//    private void showAudioButton() {
+//        mAudioButton.setVisibility(View.VISIBLE);
+//        mEditText.setVisibility(View.GONE);
+//        mAudioIv.setImageResource(R.mipmap.ic_keyboard);
+//        if (mBottomLayout.isShown()) {
+//            hideBottomLayout(false);
+//        } else {
+//            hideSoftInput();
+//        }
+//    }
     //绑定发送按钮
     public ChatUiHelper bindttToSendButton(Button sendbtn) {
         mSendBtn = sendbtn;
@@ -246,14 +262,14 @@ public class ChatUiHelper {
             public void onClick(View v) {
                 mEditText.clearFocus();
                 if (!mEmojiLayout.isShown()) {
-////                    if (mAddLayout.isShown()) {
+                    if (mAddLayout.isShown()) {
                         showEmotionLayout();
-////                        hideMoreLayout();
-////                        return;
-////                    }
-////                    && !mAddLayout.isShown()
-                } else
-                    if (mEmojiLayout.isShown() ) {
+                        hideMoreLayout();
+//                        hideAudioButton();
+                        return;
+                    }
+
+                } else if (mEmojiLayout.isShown() && !mAddLayout.isShown()) {
                     mIvEmoji.setImageResource(R.mipmap.ic_emoji);
                     if (mBottomLayout.isShown()) {
                         lockContentHeight();//显示软件盘时，锁定内容高度，防止跳闪。
@@ -272,7 +288,8 @@ public class ChatUiHelper {
                     return;
                 }
                 showEmotionLayout();
-//                hideMoreLayout();
+                hideMoreLayout();
+//                hideAudioButton();
                 if (mBottomLayout.isShown()) {
                     lockContentHeight();//显示软件盘时，锁定内容高度，防止跳闪。
                     hideBottomLayout(true);//隐藏表情布局，显示软件盘
@@ -293,48 +310,49 @@ public class ChatUiHelper {
 //}
 //
 //    //绑定底部加号按钮
-//    public ChatUiHelper bindToAddButton(View addButton) {
-//        mAddButton = addButton;
-//
-//        addButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                 mEditText.clearFocus();
-//                 if (mBottomLayout.isShown()){
-//                  if (mAddLayout.isShown()){
-//                      lockContentHeight();//显示软件盘时，锁定内容高度，防止跳闪。
-//                      hideBottomLayout(true);//隐藏表情布局，显示软件盘
-//                      unlockContentHeightDelayed();//软件盘显示后，释放内容高度
-//                  }else{
-//                      showMoreLayout();
-//                      hideEmotionLayout();
-//                  }
-//              }else{
-//                  if (isSoftInputShown()) {//同上
-//                      hideEmotionLayout();
-//                      showMoreLayout();
-//                      lockContentHeight();
-//                      showBottomLayout();
-//                      unlockContentHeightDelayed();
-//                  } else {
-//                       showMoreLayout();
-//                       hideEmotionLayout();
-//                       showBottomLayout();//两者都没显示，直接显示表情布局
-//                  }
-//              }
-//            }
-//        });
-//        return this;
-//    }
+    public ChatUiHelper bindToAddButton(View addButton) {
+        mAddButton = addButton;
+
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                 mEditText.clearFocus();
+//                hideAudioButton();
+                 if (mBottomLayout.isShown()){
+                  if (mAddLayout.isShown()){
+                      lockContentHeight();//显示软件盘时，锁定内容高度，防止跳闪。
+                      hideBottomLayout(true);//隐藏表情布局，显示软件盘
+                      unlockContentHeightDelayed();//软件盘显示后，释放内容高度
+                  }else{
+                      showMoreLayout();
+                      hideEmotionLayout();
+                  }
+              }else{
+                  if (isSoftInputShown()) {//同上
+                      hideEmotionLayout();
+                      showMoreLayout();
+                      lockContentHeight();
+                      showBottomLayout();
+                      unlockContentHeightDelayed();
+                  } else {
+                       showMoreLayout();
+                       hideEmotionLayout();
+                       showBottomLayout();//两者都没显示，直接显示表情布局
+                  }
+              }
+            }
+        });
+        return this;
+    }
 
 
     private void hideMoreLayout() {
         mAddLayout.setVisibility(View.GONE);
     }
 
-//    private void showMoreLayout() {
-//        mAddLayout.setVisibility(View.VISIBLE);
-//    }
+    private void showMoreLayout() {
+        mAddLayout.setVisibility(View.VISIBLE);
+    }
 
 
     /**
